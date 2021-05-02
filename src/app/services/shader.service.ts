@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Shaders } from '../domain/shaders';
+import { environment } from '../../environments/environment';
 
 const shaderNames: string[] = [
     'advect.fs',
@@ -25,7 +26,7 @@ export class ShaderService {
     constructor(private httpClient: HttpClient) { }
 
     private loadFile(fileName: string): Observable<any> {
-        return this.httpClient.get(`/assets/shaders/${fileName}`, { responseType: 'text' });
+        return this.httpClient.get(`${environment.appPrefix}/assets/shaders/${fileName}`, { responseType: 'text' });
     }
 
     // get all shaders needed from the server
